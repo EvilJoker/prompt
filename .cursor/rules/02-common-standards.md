@@ -72,24 +72,31 @@ alwaysApply: true
 ## 🎨 编码规范标准
 
 ### 命名规范
-```typescript
-// 变量和函数：camelCase
-const userName = 'john';
-function getUserInfo() { }
+```pseudocode
+# 变量和函数：驼峰命名法
+VARIABLE user_name = 'john'
+FUNCTION get_user_info() 
+    # 函数实现
+END FUNCTION
 
-// 类和接口：PascalCase
-class UserService { }
-interface UserProfile { }
+# 类和接口：帕斯卡命名法  
+CLASS UserService
+    # 类实现
+END CLASS
 
-// 常量：SCREAMING_SNAKE_CASE
-const MAX_RETRY_COUNT = 3;
+INTERFACE UserProfile
+    # 接口定义
+END INTERFACE
 
-// 文件名：kebab-case
-user-service.ts, user-profile.interface.ts
+# 常量：大写下划线命名法
+CONSTANT MAX_RETRY_COUNT = 3
+
+# 文件名：短横线命名法
+FILES: user-service.ext, user-profile.interface.ext
 ```
 
 ### 注释规范
-```typescript
+```pseudocode
 /**
  * 用户信息服务类
  * 提供用户CRUD操作和权限验证
@@ -98,43 +105,42 @@ user-service.ts, user-profile.interface.ts
  * @version 1.0.0
  * @since 2024-01-01
  */
-class UserService {
+CLASS UserService:
     /**
      * 获取用户信息
      * 
-     * @param userId - 用户ID
-     * @param includeProfile - 是否包含详细信息
+     * @param user_id - 用户ID
+     * @param include_profile - 是否包含详细信息，默认false
      * @returns Promise<UserInfo> 用户信息对象
      * @throws {UserNotFoundError} 用户不存在时抛出
      */
-    async getUserInfo(userId: string, includeProfile = false): Promise<UserInfo> {
-        // 实现逻辑...
-    }
-}
+    ASYNC FUNCTION get_user_info(user_id: STRING, include_profile = false):
+        # 实现逻辑...
+    END FUNCTION
+END CLASS
 ```
 
 ### 错误处理规范
-```typescript
-// 统一错误类型定义
-class BusinessError extends Error {
-    constructor(
-        public code: string,
-        public message: string,
-        public details?: any
-    ) {
-        super(message);
-        this.name = 'BusinessError';
-    }
-}
+```pseudocode
+# 统一错误类型定义
+CLASS BusinessError EXTENDS Error:
+    CONSTRUCTOR(code: STRING, message: STRING, details: ANY):
+        super(message)
+        this.code = code
+        this.message = message
+        this.details = details
+        this.name = 'BusinessError'
+    END CONSTRUCTOR
+END CLASS
 
-// 统一错误处理
-try {
-    const result = await riskyOperation();
-    return result;
-} catch (error) {
-    logger.error('操作失败', { error, context });
-    throw new BusinessError('OPERATION_FAILED', '操作失败', error);
-}
+# 统一错误处理
+TRY:
+    result = AWAIT risky_operation()
+    RETURN result
+CATCH error:
+    logger.error('操作失败', {error, context})
+    THROW NEW BusinessError('OPERATION_FAILED', '操作失败', error)
+END TRY
 ```
 
 ---
@@ -156,22 +162,22 @@ try {
 - **性能测试**：响应时间和并发测试
 
 ### 测试命名规范
-```typescript
-describe('UserService', () => {
-    describe('getUserInfo', () => {
-        it('should return user info when valid userId provided', async () => {
-            // 测试正常情况
-        });
+```pseudocode
+DESCRIBE 'UserService':
+    DESCRIBE 'get_user_info':
+        TEST 'should return user info when valid user_id provided':
+            # 测试正常情况
+        END TEST
         
-        it('should throw UserNotFoundError when userId not exists', async () => {
-            // 测试异常情况
-        });
+        TEST 'should throw UserNotFoundError when user_id not exists':
+            # 测试异常情况
+        END TEST
         
-        it('should return user info with profile when includeProfile is true', async () => {
-            // 测试边界条件
-        });
-    });
-});
+        TEST 'should return user info with profile when include_profile is true':
+            # 测试边界条件
+        END TEST
+    END DESCRIBE
+END DESCRIBE
 ```
 
 ---
@@ -204,7 +210,7 @@ describe('UserService', () => {
 ```
 
 ### API文档模板
-```yaml
+```api_pseudocode
 # OpenAPI 3.0 规范
 openapi: 3.0.0
 info:
@@ -213,11 +219,11 @@ info:
   description: [API功能描述]
 
 paths:
-  /users/{userId}:
+  /users/{user_id}:
     get:
       summary: 获取用户信息
       parameters:
-        - name: userId
+        - name: user_id
           in: path
           required: true
           schema:
@@ -249,7 +255,7 @@ paths:
 ```
 
 ### 提交信息规范
-```
+```git_pseudocode
 <type>(<scope>): <subject>
 
 <body>
@@ -267,7 +273,7 @@ paths:
 - `chore`: 构建工具或依赖更新
 
 **示例**：
-```
+```git_pseudocode
 feat(user): add user profile editing functionality
 
 - Add user profile form component
