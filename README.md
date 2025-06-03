@@ -1,4 +1,4 @@
-# 🚀 提示词分发系统 v2.0 使用指南
+# 🚀 提示词分发系统 v1.0 使用指南
 
 ## 📋 系统概览
 
@@ -261,6 +261,27 @@ graph TD
 3. **质量监控**：确保输出质量的持续改进
 4. **文档同步**：保持所有文档的及时更新
 
+### 使用方式
+1. 为项目添加 git submodule add https://github.com/EvilJoker/prompt.git .cursor
+
+
+```bash
+# ✅ 添加子模块
+git submodule add -b branch https://github.com/EvilJoker/prompt.git .cursor
+
+# ✅ 更新指定子模块到远程最新版本
+git submodule update --remote .cursor
+
+# ✅ 更新所有子模块到远程最新版本
+git submodule update --remote
+
+# ✅ 更新子模块到主仓库记录的版本
+git submodule update
+
+# ✅ 初始化并更新所有子模块
+git submodule update --init --recursive
+
+```
 ---
 
 ## 🆚 版本对比
