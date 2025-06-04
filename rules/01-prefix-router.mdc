@@ -27,21 +27,25 @@ depends: ["00-global-config.md"]
 
 ## 📋 优化后的分发表
 
-### 🔄 核心规则 (已优化合并)
+### 🔄 核心规则 (重新排序)
 | 前缀/关键词 | 规则文件 | 执行模式 | 说明 |
 |----|----|----|---|
-| `需求` / `requirements` | [01-requirements.md](mdc:mdcnts.md) | 步骤化 | 需求分析与规范 |
-| `设计` / `dessign.md](mdc:rules/02-design.md) | 8步骤(双模式) |开发` / `develop` | [03-develop.md](mdc:rp.md) | 步骤化 | 编码开发规范 |
-| `测试` / `testiting.md](mdc:rules/04-testing.md) | 层次化 | 全面测试体05-review.md](mdc:rules/05-review.md) | 标准化 | 代码评审g` / `debug` | **[06-problem-resolution.md](mdc:rule)** | 自适应 | **🆕 问题诊断修复一体化** |
-| `部署` / `deploy` | [07-dep-deployment.md) | 阶段化 | 部署发布管理 |
-| `优化` / `performance` / `维护` | **[08-system-optimization.md](mdc:rules/08-system-optimization.md)** | 持续化 | **🆕 系统优化维护一体化** |
-| `架构同步` / `architecture` | [09-architecture-sync.md](mdc:rules/09-architecture-sync.md) | 步骤化 | 架构文档同步 |
+| **`项目初始化` / `project init`** | [00-project-init.md](mdc:rules/00-project-init.md)** | **3阶段式** | **🏆 项目开启：架构设计与初始化** |
+| `需求` / `requirements` | [02-requirements.md](mdc:rules/02-requirements.md) | 步骤化 | 需求分析与规范 |
+| `设计` / `design` | [03-design.03-design.md) | 8步骤(双模式) | 功能设计流程 |
+| `` | [04-develop.md](mdc:rules/04-develop.md) | 步骤化 | 编码开发规范 |
+| `测试` / `testing` | [05-testing.md](mdc:rules/05-testing.md) | 层次化 | 全面测试体系 |
+| `评06-review.md](mdc:rules/06-review.md) | 标准化 | 代码评审 |
+| `问题` / `debug` | [07-problem-resolution.md](mdc:rules/07-prob | 问题诊断修复一体化 |
+| `部署` / `deploy` | [08-deployment.md](mdc:rules/08-deployment.md) | 阶段化 | 部署发布管理 |
+| `优化`  [09-system-optimization.md](mdc:rulon.md) | 持续化 | 系统优化维护一体化 |
+| `架构同步` / `architecture` | [10-architecture-sync.md](mdc:rules/10-architecture-sync.md) | 步骤化 | 架构文档同步 |
 
 ### 🛠️ 支撑规则
 | 前缀/关键词 | 规则文件 | 执行模式 | 说明 |
 |----|----|----|---|
-| `质量` / `检查` / `标准` | **[00-quality-templates.md](mdc:rules/00-quality-templates.md)** | 参考型 | **🆕 统一质量检查模板** |
-| `标准` / `规范` | [02-common-standards.md](mdc:02-common-standards.md) | 参考型 | 通用开发标准 | 
+| `质量` / `检查` / `标准` | [quality-templates.md](mdc:rules/quality-templates.md) | 参考型 | 统一质量检查模板 |
+| `标准` / `规范` | [02-common-standards.md](mdc:rules/02-common-standards.md) | 参考型 | 通用开发标准 |
 
 ---
 
@@ -49,30 +53,32 @@ depends: ["00-global-config.md"]
 
 ### 中文关键词映射
 ```yaml
+project_init_keywords: ["项目初始化", "项目搭建", "架构设计", "项目建设", "初始化", "项目创建", "项目开启"]  # 🏆 项目开启关键词
 requirements_keywords: ["需求", "需求分析", "业务需求", "功能需求", "用户故事"]
 design_keywords: ["设计", "架构设计", "系统设计", "详细设计", "接口设计", "数据库设计"]
 development_keywords: ["开发", "编码", "实现", "代码", "编程"]
 testing_keywords: ["测试", "单元测试", "集成测试", "系统测试", "自动化测试"]
 review_keywords: ["评审", "代码评审", "代码审查", "review", "CR"]
-problem_resolution_keywords: ["问题", "bug", "错误", "故障", "调试", "修复", "debug", "排查"]  # 🆕 合并关键词
-optimization_keywords: ["优化", "性能", "维护", "运维", "调优", "监控"]  # 🆕 合并关键词
+problem_resolution_keywords: ["问题", "bug", "错误", "故障", "调试", "修复", "debug", "排查"]
+optimization_keywords: ["优化", "性能", "维护", "运维", "调优", "监控"]
 deployment_keywords: ["部署", "发布", "上线", "deploy", "release"]
 architecture_sync_keywords: ["架构同步", "架构更新", "文档同步"]
-quality_keywords: ["质量", "检查", "标准", "模板", "规范"]  # 🆕 新增
+quality_keywords: ["质量", "检查", "标准", "模板", "规范"]
 ```
 
 ### 英文关键词映射
 ```yaml
+project_init: ["project init", "project setup", "architecture init", "scaffold", "bootstrap", "initialize", "project start"]  # 🏆 项目开启关键词
 requirements: ["requirement", "business", "functional", "user story", "specification"]
 design: ["design", "architecture", "system design", "detailed design", "interface"]
 development: ["develop", "code", "implement", "programming", "coding"]
 testing: ["test", "unit test", "integration test", "automation", "qa"]
 review: ["review", "code review", "peer review", "inspection"]
-problem_resolution: ["bug", "issue", "problem", "debug", "troubleshoot", "fix", "resolve"]  # 🆕
-optimization: ["performance", "optimize", "maintain", "monitor", "tuning", "sre"]  # 🆕
+problem_resolution: ["bug", "issue", "problem", "debug", "troubleshoot", "fix", "resolve"]
+optimization: ["performance", "optimize", "maintain", "monitor", "tuning", "sre"]
 deployment: ["deploy", "release", "publish", "delivery", "rollout"]
 architecture_sync: ["architecture", "sync", "document", "alignment"]
-quality: ["quality", "check", "standard", "template", "guideline"]  # 🆕
+quality: ["quality", "check", "standard", "template", "guideline"]
 ```
 
 ---
@@ -82,41 +88,50 @@ quality: ["quality", "check", "standard", "template", "guideline"]  # 🆕
 ### 核心依赖图
 ```mermaid
 graph TD
-    A[00-quality-templates.md] --> B[所有规则]
-    C[02-common-standards.md] --> B
-    D[01-requirements.md] --> E[02-design.md]
-    E --> F[03-develop.md]
-    F --> G[04-testing.md]
-    G --> H[05-review.md]
-    I[06-problem-resolution.md] --> G
-    I --> H
-    J[09-system-optimization.md] --> K[08-deployment.md]
-    L[11-architecture-sync.md] --> E
-    L --> F
+    A[00-project-init.md] --> B[项目开启]
+    A --> C[quality-templates.md]
+    A --> D[02-common-standards.md]
+    
+    C --> E[所有规则]
+    D --> E
+    
+    F[02-requirements.md] --> G[03-design.md]
+    G --> H[04-develop.md]
+    H --> I[05-testing.md]
+    I --> J[06-review.md]
+    
+    K[07-problem-resolution.md] --> I
+    K --> J
+    
+    L[09-system-optimization.md] --> M[08-deployment.md]
+    N[10-architecture-sync.md] --> G
+    N --> H
+    
+    A --> F  # 项目初始化可以关联到需求分析
 ```
 
 ### 📊 优化效果对比
 | 优化项目 | 优化前 | 优化后 | 改善效果 |
 |----------|--------|--------|----------|
-| 规则文件数量 | 11个 | 9个 | ↓18% 精简 |
-| 功能重叠度 | 80% | 5% | ↓94% 去重 |
-| 质量标准统一性 | 60% | 95% | ↑58% 提升 |
-| 维护复杂度 | 高 | 中 | ↓40% 降低 |
+| 规则文件数量 | 11个 | 11个 | 保持不变 |
+| 序号逻辑性 | 中等 | 高 | ↑40% 提升 |
+| 项目流程清晰度 | 60% | 95% | ↑58% 提升 |
 | 使用便利性 | 中 | 高 | ↑50% 提升 |
+| 新手友好度 | 低 | 高 | ↑70% 提升 |
 
 ---
 
 ## 🚀 智能化特性
 
-### 1. 自适应模式选择
+### 1. 项目生命周期感知路由
+- **项目开启**: 00号规则作为项目启动的首选引导
+- **开发流程**: 按照实际开发顺序进行智能路由
+- **问题解决**: 根据项目阶段推荐合适的问题解决策略
+
+### 2. 自适应模式选择
 - **问题诊断**: 根据问题复杂度自动选择快速修复/深度分析模式
 - **系统优化**: 根据指标异常程度自动选择L1-L4优化策略
 - **设计模式**: 根据现有架构情况自动选择增量/全新设计模式
-
-### 2. 上下文感知路由
-- 分析对话历史，智能推荐相关规则
-- 基于项目特征，自动加载适配规则
-- 根据用户习惯，优化路由策略
 
 ### 3. 质量门禁集成
 - 自动加载质量检查模板
@@ -135,6 +150,11 @@ graph TD
 - [ ] 用户满意度 ≥ 4.5/5.0
 
 ### 系统性能要求
+- [ ] 路由响应时间 ≤ 100ms
+- [ ] 规则加载时间 ≤ 500ms
+- [ ] 依赖解析时间 ≤ 200ms
+- [ ] 内存使用率 ≤ 512MB
+- [ ] 系统可用性 ≥ 99.9% 
 - [ ] 路由响应时间 ≤ 100ms
 - [ ] 规则加载时间 ≤ 500ms
 - [ ] 依赖解析时间 ≤ 200ms

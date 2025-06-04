@@ -14,20 +14,21 @@
 ```
 提示词分发系统 v2.0
 ├── 00-global-config.md          # 🌐 全局配置
-├── 01-prefix-router.md          # 🎯 智能路由
+├── 01-prefix-router.mdc         # 🎯 智能路由 (仅保留.mdc版本)
 ├── 02-common-standards.md       # 📐 公共标准
 ├── local*.mdc                   # 🔄 本地定制化的规则不参与推送
 └── rules/                       # 📁 规则库
-    ├── 00-quality-templates.md # 📋 质量检查模板
-    ├── 01-requirements.md      # 📝 需求分析
-    ├── 02-design.md            # 🎨 功能设计
-    ├── 03-develop.md           # 💻 代码开发
-    ├── 04-testing.md           # 🧪 测试流程
-    ├── 05-review.md            # 👀 代码评审
-    ├── 06-problem-resolution.md # 🔧 问题诊断修复
-    ├── 07-deployment.md        # 🚀 部署发布
-    ├── 08-system-optimization.md # ⚡ 系统优化维护
-    └── 09-architecture-sync.md # 🏗️ 架构同步
+    ├── 00-project-init.md       # 🏆 项目开启：架构设计与初始化
+    ├── quality-templates.md     # 📋 质量检查模板 (无序号)
+    ├── 02-requirements.md       # 📝 需求分析
+    ├── 03-design.md             # 🎨 功能设计
+    ├── 04-develop.md            # 💻 代码开发
+    ├── 05-testing.md            # 🧪 测试流程
+    ├── 06-review.md             # 👀 代码评审
+    ├── 07-problem-resolution.md # 🔧 问题诊断修复
+    ├── 08-deployment.md         # 🚀 部署发布
+    ├── 09-system-optimization.md # ⚡ 系统优化维护
+    └── 10-architecture-sync.md  # 🏗️ 架构同步
 ```
 
 ---
@@ -53,16 +54,17 @@ graph TD
 
 | 前缀关键词 | 规则文件 | 执行模式 | 应用场景 |
 |------------|----------|----------|----------|
-| `需求` `requirements` | `01-requirements.md` | 5步骤化 | 需求分析流程 |
-| `design` `设计` | `02-design.md` | 7步骤化 | 功能设计流程 |
-| `dev` `开发` | `03-develop.md` | 5步骤化 | 代码开发流程 |
-| `test` `测试` | `04-testing.md` | 步骤化 | 测试流程 |
-| `review` `评审` | `05-review.md` | 一次性 | 代码评审 |
-| `bug` `问题` `debug` | `06-problem-resolution.md` | 自适应 | 问题诊断修复 |
-| `deploy` `部署` | `07-deployment.md` | 步骤化 | 部署发布 |
-| `维护` `optimize` `性能` | `08-system-optimization.md` | 持续化 | 系统优化维护 |
-| `架构` `architecture` | `09-architecture-sync.md` | 步骤化 | 架构同步 |
-| `质量` `检查` `模板` | `00-quality-templates.md` | 参考 | 质量检查模板 |
+| `项目初始化` `project init` | `00-project-init.md` | 3阶段式 | 项目架构设计与初始化 |
+| `需求` `requirements` | `02-requirements.md` | 5步骤化 | 需求分析流程 |
+| `design` `设计` | `03-design.md` | 7步骤化 | 功能设计流程 |
+| `dev` `开发` | `04-develop.md` | 5步骤化 | 代码开发流程 |
+| `test` `测试` | `05-testing.md` | 步骤化 | 测试流程 |
+| `review` `评审` | `06-review.md` | 一次性 | 代码评审 |
+| `bug` `问题` `debug` | `07-problem-resolution.md` | 自适应 | 问题诊断修复 |
+| `deploy` `部署` | `08-deployment.md` | 步骤化 | 部署发布 |
+| `维护` `optimize` `性能` | `09-system-optimization.md` | 持续化 | 系统优化维护 |
+| `架构` `architecture` | `10-architecture-sync.md` | 步骤化 | 架构同步 |
+| `质量` `检查` `模板` | `quality-templates.md` | 参考 | 质量检查模板 |
 
 ### 🎯 使用示例
 
@@ -161,21 +163,22 @@ graph TD
 ```
 .cursor/rules/
 ├── 00-global-config.md        # 全局配置和质量基线
-├── 01-prefix-router.md        # 路由规则和智能匹配
+├── 01-prefix-router.mdc       # 路由规则和智能匹配 (仅.mdc版本)
 ├── 02-common-standards.md     # 公共标准和规范模板
 ├── migration-guide.md         # 系统迁移指南
 ├── README.md                  # 本使用指南
 └── rules/                     # 具体规则文件
-    ├── 00-quality-templates.md # 质量检查模板库
-    ├── 01-requirements.md     # 需求分析：5步流程
-    ├── 02-design.md          # 功能设计：7步流程
-    ├── 03-develop.md         # 代码开发：5步流程
-    ├── 04-testing.md         # 测试流程：测试策略
-    ├── 05-review.md          # 代码评审：6维度评审
-    ├── 06-problem-resolution.md # 问题诊断修复：4阶段一体化
-    ├── 07-deployment.md      # 部署发布：部署流程
-    ├── 08-system-optimization.md # 系统优化维护：5维度体系
-    └── 09-architecture-sync.md   # 架构同步：架构维护
+    ├── 00-project-init.md     # 项目开启：架构设计与初始化
+    ├── quality-templates.md   # 质量检查模板库 (无序号模板类)
+    ├── 02-requirements.md     # 需求分析：5步流程
+    ├── 03-design.md          # 功能设计：7步流程
+    ├── 04-develop.md         # 代码开发：5步流程
+    ├── 05-testing.md         # 测试流程：测试策略
+    ├── 06-review.md          # 代码评审：6维度评审
+    ├── 07-problem-resolution.md # 问题诊断修复：4阶段一体化
+    ├── 08-deployment.md      # 部署发布：部署流程
+    ├── 09-system-optimization.md # 系统优化维护：5维度体系
+    └── 10-architecture-sync.md   # 架构同步：架构维护
 ```
 
 ### 🔧 依赖关系
@@ -186,35 +189,38 @@ graph TD
     - 编码规范
     - 文档模板
     
-  00-quality-templates.md:    # 质量模板库
+  quality-templates.md:       # 质量模板库 (无序号模板类)
     depends: [02-common-standards.md]
     
-  01-requirements.md:         # 需求分析
+  00-project-init.md:         # 项目开启 (00号规则)
+    depends: [quality-templates.md, 02-common-standards.md]
+    
+  02-requirements.md:         # 需求分析
     depends: [02-common-standards.md]
     
-  02-design.md:              # 功能设计
-    depends: [02-common-standards.md, 01-requirements.md]
+  03-design.md:              # 功能设计
+    depends: [02-common-standards.md, 02-requirements.md]
     
-  03-develop.md:             # 代码开发
-    depends: [02-common-standards.md, 02-design.md]
+  04-develop.md:             # 代码开发
+    depends: [02-common-standards.md, 03-design.md]
     
-  04-testing.md:             # 测试流程
-    depends: [02-common-standards.md, 03-develop.md]
+  05-testing.md:             # 测试流程
+    depends: [02-common-standards.md, 04-develop.md]
     
-  05-review.md:              # 代码评审
-    depends: [02-common-standards.md, 03-develop.md]
+  06-review.md:              # 代码评审
+    depends: [02-common-standards.md, 04-develop.md]
     
-  06-problem-resolution.md:  # 问题诊断修复
-    depends: [02-common-standards.md, 04-testing.md, 05-review.md]
+  07-problem-resolution.md:  # 问题诊断修复
+    depends: [02-common-standards.md, 05-testing.md, 06-review.md]
     
-  07-deployment.md:          # 部署发布
-    depends: [02-common-standards.md, 04-testing.md]
+  08-deployment.md:          # 部署发布
+    depends: [02-common-standards.md, 05-testing.md]
     
-  08-system-optimization.md: # 系统优化维护
-    depends: [02-common-standards.md, 07-deployment.md]
+  09-system-optimization.md: # 系统优化维护
+    depends: [02-common-standards.md, 08-deployment.md]
     
-  09-architecture-sync.md:   # 架构同步
-    depends: [02-common-standards.md, 02-design.md, 03-develop.md]
+  10-architecture-sync.md:   # 架构同步
+    depends: [02-common-standards.md, 03-design.md, 04-develop.md]
 ```
 
 ---
@@ -285,20 +291,6 @@ git submodule update --init --recursive
 cd .cursor 
 
 ```
----
-
-## 🆚 版本对比
-
-| 特性 | v1.0 (旧版) | v2.0 (新版) | 改进说明 |
-|------|-------------|-------------|----------|
-| **文件格式** | .mdc | .md | 支持Agent直接编辑 |
-| **组织方式** | 功能分散 | 编号体系 | 按研发流程00-09编号 |
-| **路由机制** | 手动触发 | 智能分发 | 自动前缀和关键词匹配 |
-| **质量标准** | 不一致 | 统一基线 | 公共标准规范+质量模板 |
-| **依赖管理** | 隐含依赖 | 明确依赖 | 清晰的依赖关系图 |
-| **维护成本** | 高重复 | 低冗余 | 消除重复，流程合并 |
-| **问题处理** | 分散式 | 一体化 | 问题诊断修复一体化 |
-| **系统优化** | 独立维护 | 集成优化 | 维护+性能优化一体化 |
 
 ---
 
