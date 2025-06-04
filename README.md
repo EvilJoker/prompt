@@ -16,7 +16,7 @@
 ├── 00-global-config.md          # 🌐 全局配置
 ├── 01-prefix-router.md          # 🎯 智能路由
 ├── 02-common-standards.md       # 📐 公共标准
-├── migration-guide.md           # 🔄 迁移指南
+├── local*.mdc                   # 🔄 本地定制化的规则不参与推送
 └── rules/                       # 📁 规则库
     ├── 00-quality-templates.md # 📋 质量检查模板
     ├── 01-requirements.md      # 📝 需求分析
@@ -280,6 +280,9 @@ git submodule update
 
 # ✅ 初始化并更新所有子模块
 git submodule update --init --recursive
+
+# ✅ 更新 进入模块目录，正常推送即可
+cd .cursor 
 
 ```
 ---
