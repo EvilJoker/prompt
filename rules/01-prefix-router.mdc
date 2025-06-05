@@ -1,15 +1,7 @@
 ---
-description: 
+description: "智能提示词分发路由系统"
 globs: 
-alwaysApply: true
----
----
-type: prefix_router
-number: "01"
-version: "2.0"
-description: "智能分发路由系统"
-execution_mode: "automatic"
-depends: ["00-global-config.md"]
+alwaysApply: false
 ---
 
 # 01 智能提示词分发路由器
@@ -30,16 +22,17 @@ depends: ["00-global-config.md"]
 ### 🔄 核心规则 (重新排序)
 | 前缀/关键词 | 规则文件 | 执行模式 | 说明 |
 |----|----|----|---|
-| **`项目初始化` / `project init`** | [00-project-init.md](mdc:rules/00-project-init.md)** | **3阶段式** | **🏆 项目开启：架构设计与初始化** |
+| **`项目初始化` / `project init`** | **[00-project-init.md](mdc:rules/00-project-init.md)** | **3阶段式** | **🏆 项目开启：架构设计与初始化** |
 | `需求` / `requirements` | [02-requirements.md](mdc:rules/02-requirements.md) | 步骤化 | 需求分析与规范 |
-| `设计` / `design` | [03-design.03-design.md) | 8步骤(双模式) | 功能设计流程 |
-| `` | [04-develop.md](mdc:rules/04-develop.md) | 步骤化 | 编码开发规范 |
+| `设计` / `design` | [03-design.md](mdc:rules/03-design.md) | 8步骤(双模式) | 功能设计流程 |
+| `开发` / `develop` | [04-develop.md](mdc:rules/04-develop.md) | 步骤化 | 编码开发规范 |
 | `测试` / `testing` | [05-testing.md](mdc:rules/05-testing.md) | 层次化 | 全面测试体系 |
-| `评06-review.md](mdc:rules/06-review.md) | 标准化 | 代码评审 |
-| `问题` / `debug` | [07-problem-resolution.md](mdc:rules/07-prob | 问题诊断修复一体化 |
+| `评审` / `review` | [06-review.md](mdc:rules/06-review.md) | 标准化 | 代码评审 |
+| `问题` / `debug` | [07-debug.md](mdc:rules/07-debug.md) | 自适应 | 问题诊断修复一体化 |
 | `部署` / `deploy` | [08-deployment.md](mdc:rules/08-deployment.md) | 阶段化 | 部署发布管理 |
-| `优化`  [09-system-optimization.md](mdc:rulon.md) | 持续化 | 系统优化维护一体化 |
+| `优化` / `optimization` | [09-optimization.md](mdc:rules/09-optimization.md) | 持续化 | 系统优化维护一体化 |
 | `架构同步` / `architecture` | [10-architecture-sync.md](mdc:rules/10-architecture-sync.md) | 步骤化 | 架构文档同步 |
+| **`开源项目检查` / `opensource check`** | **[10-opensource.md](mdc:rules/10-opensource.md)** | **4阶段式** | **🔍 开源项目完整性检查与创建** |
 
 ### 🛠️ 支撑规则
 | 前缀/关键词 | 规则文件 | 执行模式 | 说明 |
@@ -63,6 +56,7 @@ problem_resolution_keywords: ["问题", "bug", "错误", "故障", "调试", "�
 optimization_keywords: ["优化", "性能", "维护", "运维", "调优", "监控"]
 deployment_keywords: ["部署", "发布", "上线", "deploy", "release"]
 architecture_sync_keywords: ["架构同步", "架构更新", "文档同步"]
+opensource_keywords: ["开源项目检查", "项目完整性", "开源规范", "项目创建", "开源文档", "开源项目"]  # 🔍 开源项目关键词
 quality_keywords: ["质量", "检查", "标准", "模板", "规范"]
 ```
 
@@ -78,6 +72,7 @@ problem_resolution: ["bug", "issue", "problem", "debug", "troubleshoot", "fix", 
 optimization: ["performance", "optimize", "maintain", "monitor", "tuning", "sre"]
 deployment: ["deploy", "release", "publish", "delivery", "rollout"]
 architecture_sync: ["architecture", "sync", "document", "alignment"]
+opensource_check: ["opensource check", "project completeness", "open source standards", "project documentation check", "create project"]  # 🔍 开源项目关键词
 quality: ["quality", "check", "standard", "template", "guideline"]
 ```
 
@@ -100,12 +95,15 @@ graph TD
     H --> I[05-testing.md]
     I --> J[06-review.md]
     
-    K[07-problem-resolution.md] --> I
+    K[07-debug.md] --> I
     K --> J
     
-    L[09-system-optimization.md] --> M[08-deployment.md]
+    L[09-optimization.md] --> M[08-deployment.md]
     N[10-architecture-sync.md] --> G
     N --> H
+    
+    O[10-opensource.md] --> C  # 开源项目检查依赖质量模板
+    O --> D  # 开源项目检查依赖公共标准
     
     A --> F  # 项目初始化可以关联到需求分析
 ```
@@ -113,11 +111,12 @@ graph TD
 ### 📊 优化效果对比
 | 优化项目 | 优化前 | 优化后 | 改善效果 |
 |----------|--------|--------|----------|
-| 规则文件数量 | 11个 | 11个 | 保持不变 |
+| 规则文件数量 | 11个 | 12个 | +1个开源检查规则 |
 | 序号逻辑性 | 中等 | 高 | ↑40% 提升 |
 | 项目流程清晰度 | 60% | 95% | ↑58% 提升 |
 | 使用便利性 | 中 | 高 | ↑50% 提升 |
 | 新手友好度 | 低 | 高 | ↑70% 提升 |
+| 开源项目支持 | 无 | 完整 | ↑100% 新增 |
 
 ---
 
@@ -127,16 +126,19 @@ graph TD
 - **项目开启**: 00号规则作为项目启动的首选引导
 - **开发流程**: 按照实际开发顺序进行智能路由
 - **问题解决**: 根据项目阶段推荐合适的问题解决策略
+- **开源项目**: 自动检查项目完整性并生成标准文档
 
 ### 2. 自适应模式选择
 - **问题诊断**: 根据问题复杂度自动选择快速修复/深度分析模式
 - **系统优化**: 根据指标异常程度自动选择L1-L4优化策略
 - **设计模式**: 根据现有架构情况自动选择增量/全新设计模式
+- **开源检查**: 根据项目成熟度自动选择基础/进阶/专业级检查模式
 
 ### 3. 质量门禁集成
 - 自动加载质量检查模板
 - 强制质量标准验证
 - 质量数据统计分析
+- 开源项目完整性评分(100分制)
 
 ---
 
@@ -148,15 +150,12 @@ graph TD
 - [ ] 上下文感知准确率 ≥ 85%
 - [ ] 综合分发准确率 ≥ 99%
 - [ ] 用户满意度 ≥ 4.5/5.0
+- [ ] 开源项目检查准确率 ≥ 95%
 
 ### 系统性能要求
 - [ ] 路由响应时间 ≤ 100ms
 - [ ] 规则加载时间 ≤ 500ms
 - [ ] 依赖解析时间 ≤ 200ms
 - [ ] 内存使用率 ≤ 512MB
-- [ ] 系统可用性 ≥ 99.9% 
-- [ ] 路由响应时间 ≤ 100ms
-- [ ] 规则加载时间 ≤ 500ms
-- [ ] 依赖解析时间 ≤ 200ms
-- [ ] 内存使用率 ≤ 512MB
-- [ ] 系统可用性 ≥ 99.9% 
+- [ ] 系统可用性 ≥ 99.9%
+- [ ] 开源检查扫描时间 ≤ 2秒 
