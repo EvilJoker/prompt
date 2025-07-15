@@ -1,11 +1,11 @@
-# 🚀 提示词分发系统 v1.0 使用指南
+# 🚀 提示词分发系统 v2.0 使用指南
 
 ## 📋 系统概览
 
 ### 🎯 版本特性
-- ✅ **智能分发**：基于前缀和关键词的自动路由
-- ✅ **编号体系**：按研发流程的00-10编号系统
-- ✅ **模块化设计**：公共标准 + 专项规则的组合架构
+- ✅ **简化命令**：基于 `>` 前缀的直观命令系统
+- ✅ **三字母缩写**：支持简洁的三字母缩写匹配
+- ✅ **统一配置**：合并全局配置到路由规则中
 - ✅ **质量统一**：一致的质量基线和输出标准
 - ✅ **Agent友好**：.md格式，支持Agent直接编辑
 
@@ -13,24 +13,21 @@
 
 ```
 提示词分发系统 v2.0
-├── 00-global-config.md          # 🌐 全局配置
-├── 01-prefix-router.md          # 🎯 智能路由
+├── 01-prefix-router.md          # 🎯 智能路由配置
 ├── 02-common-standards.md       # 📐 公共标准
-├── local*.mdc                   # 🔄 本地定制化的规则不参与推送
 └── rules/                       # 📁 规则库
     ├── 00-project-init.md       # 🏆 项目开启：架构设计与初始化
-    ├── quality-templates.md     # 📋 质量检查模板 (无序号)
+    ├── quality-templates.md     # 📋 质量检查模板
     ├── 01-requirements.md       # 📝 需求分析
     ├── 02-design.md             # 🎨 功能设计
     ├── 03-develop.md            # 💻 代码开发
     ├── 04-testing.md            # 🧪 测试流程
     ├── 05-review.md             # 👀 代码评审
-    ├── 06-refactor.md           # 🔧 代码重构
     ├── 07-debug.md              # 🔧 问题诊断修复
     ├── 08-deployment.md         # 🚀 部署发布
     ├── 09-optimization.md       # ⚡ 系统优化维护
     ├── 10-architecture-sync.md  # 🏗️ 架构同步
-    └── 11-opensource.md         # 🔍 开源项目完整性检查与创建
+    └── 11-opensource.md         # 🔍 开源项目完整性检查
 ```
 
 ---
@@ -43,8 +40,8 @@
 
 ```mermaid
 graph TD
-    A[用户输入] --> B[读取全局配置]
-    B --> C[解析前缀/关键词]
+    A[用户输入] --> B[读取路由配置]
+    B --> C[解析>前缀命令]
     C --> D[匹配路由规则]
     D --> E[加载主规则文件]
     E --> F[加载依赖标准]
@@ -52,48 +49,68 @@ graph TD
     G --> H[质量检查输出]
 ```
 
-### 📍 前缀触发表
+### 📍 命令触发表
 
-| 前缀关键词 | 规则文件 | 执行模式 | 应用场景 |
-|------------|----------|----------|----------|
-| `项目初始化` `project init` | `00-project-init.md` | 3阶段式 | 项目架构设计与初始化 |
-| `需求` `requirements` | `01-requirements.md` | 5步骤化 | 需求分析流程 |
-| `design` `设计` | `02-design.md` | 6步骤化 | 功能设计流程 |
-| `develop` `开发` | `03-develop.md` | 7步骤化 | 代码开发流程 |
-| `test` `测试` | `04-testing.md` | 步骤化 | 测试流程 |
-| `review` `评审` | `05-review.md` | 一次性 | 代码评审 |
-| `refactor` `重构` | `06-refactor.md` | 步骤化 | 代码重构 |
-| `bug` `问题` `debug` | `07-debug.md` | 自适应 | 问题诊断修复 |
-| `deploy` `部署` | `08-deployment.md` | 步骤化 | 部署发布 |
-| `optimize` `优化` `性能` | `09-optimization.md` | 持续化 | 系统优化维护 |
-| `架构` `architecture` | `10-architecture-sync.md` | 步骤化 | 架构同步 |
-| `质量` `检查` `模板` | `quality-templates.md` | 参考 | 质量检查模板 |
+| 完整命令 | 三字母缩写 | 规则文件 | 执行模式 | 应用场景 |
+|----------|------------|----------|----------|----------|
+| `>init` | `>ini` | `00-project-init.md` | 3阶段式 | 项目架构设计与初始化 |
+| `>req` | `>req` | `01-requirements.md` | 5步骤化 | 需求分析流程 |
+| `>design` | `>des` | `02-design.md` | 6步骤化 | 功能设计流程 |
+| `>dev` | `>dev` | `03-develop.md` | 7步骤化 | 代码开发流程 |
+| `>test` | `>tes` | `04-testing.md` | 步骤化 | 测试流程 |
+| `>review` | `>rev` | `05-review.md` | 一次性 | 代码评审 |
+| `>debug` | `>deb` | `07-debug.md` | 自适应 | 问题诊断修复 |
+| `>deploy` | `>dep` | `08-deployment.md` | 步骤化 | 部署发布 |
+| `>optimize` | `>opt` | `09-optimization.md` | 持续化 | 系统优化维护 |
+| `>arch` | `>arc` | `10-architecture-sync.md` | 步骤化 | 架构同步 |
+| `>quality` | `>qua` | `quality-templates.md` | 参考 | 质量检查模板 |
+| `>standard` | `>sta` | `02-common-standards.md` | 参考 | 开发标准 |
+| `>help` | `>hel` | - | 帮助 | 显示所有命令帮助 |
 
 ### 🎯 使用示例
 
 #### 基础使用
 ```
-用户: 需求分析用户登录系统
+用户: >init 创建一个新的React项目
 系统: 📋 执行信息
-      - 应用规则：01-requirements.md (需求分析流程)
+      - 应用规则：00-project-init.md (项目开启：架构设计与初始化)
       - 加载依赖：02-common-standards.md
-      - 执行模式：5步骤化执行
+      - 执行模式：3阶段式执行
       
-      开始执行Step 1：需求收集和理解...
+      开始执行Stage 1：项目架构设计...
 ```
 
-#### 智能匹配
+#### 三字母缩写
 ```
-用户: 我想设计一个用户管理功能
+用户: >des 设计用户登录功能
 系统: 📋 执行信息
       - 应用规则：02-design.md (功能设计流程)
-      - 匹配关键词：["设计", "功能"]
-      - 执行模式：6步骤化执行
+      - 匹配命令：>des (design的缩写)
+      - 执行模式：8步骤(双模式)执行
+```
+
+#### 帮助系统
+```
+用户: >help
+系统: 📋 可用命令列表
+      >init/ini  - 项目初始化
+      >req       - 需求分析
+      >design/des - 功能设计
+      >dev       - 代码开发
+      >test/tes  - 测试流程
+      >review/rev - 代码评审
+      >debug/deb - 问题诊断
+      >deploy/dep - 部署发布
+      >optimize/opt - 系统优化
+      >arch/arc  - 架构同步
+      >quality/qua - 质量检查
+      >standard/sta - 开发标准
+      >help/hel  - 帮助信息
 ```
 
 #### 问题诊断
 ```
-用户: bug 系统登录失败问题排查
+用户: >debug 系统登录失败问题排查
 系统: 📋 执行信息
       - 应用规则：07-debug.md (问题诊断修复流程)
       - 执行模式：自适应(根据问题复杂度)
@@ -102,7 +119,7 @@ graph TD
 
 #### 组合使用
 ```
-用户: develop 基于设计文档实现登录功能
+用户: >dev 基于设计文档实现登录功能
 系统: 📋 执行信息
       - 应用规则：03-develop.md (代码开发流程)
       - 加载依赖：02-common-standards.md, 02-design.md
@@ -135,19 +152,20 @@ graph TD
 
 ```mermaid
 graph TD
-    A[01-需求分析] --> B[02-功能设计]
-    B --> C[03-代码开发]
-    C --> D[04-测试流程]
-    D --> E[05-代码评审]
-    E --> F{质量检查}
-    F -->|通过| G[08-部署发布]
-    F -->|不通过| H[07-问题诊断修复]
-    H --> C
-    G --> I[09-系统优化维护]
-    I --> J[10-架构同步]
+    A[>init 项目初始化] --> B[>req 需求分析]
+    B --> C[>design 功能设计]
+    C --> D[>dev 代码开发]
+    D --> E[>test 测试流程]
+    E --> F[>review 代码评审]
+    F --> G{质量检查}
+    G -->|通过| H[>deploy 部署发布]
+    G -->|不通过| I[>debug 问题诊断修复]
+    I --> D
+    H --> J[>optimize 系统优化维护]
+    J --> K[>arch 架构同步]
     
-    K[00-项目初始化] --> A
-    L[06-代码重构] --> C
+    L[>quality 质量检查] --> G
+    M[>standard 开发标准] --> D
     
     style A fill:#e1f5fe
     style B fill:#f3e5f5
@@ -161,6 +179,7 @@ graph TD
     style J fill:#e3f2fd
     style K fill:#e8f5e8
     style L fill:#fff3e0
+    style M fill:#f3e5f5
 ```
 
 ---
@@ -170,20 +189,18 @@ graph TD
 ### 📁 文件组织
 ```
 .cursor/rules/
-├── 00-global-config.md        # 全局配置和质量基线
-├── 01-prefix-router.md        # 路由规则和智能匹配
+├── 01-prefix-router.md        # 智能路由配置（合并全局配置）
 ├── 02-common-standards.md     # 公共标准和规范模板
 ├── migration-guide.md         # 系统迁移指南
 ├── README.md                  # 本使用指南
 └── rules/                     # 具体规则文件
     ├── 00-project-init.md     # 项目开启：架构设计与初始化
-    ├── quality-templates.md   # 质量检查模板库 (无序号模板类)
+    ├── quality-templates.md   # 质量检查模板库
     ├── 01-requirements.md     # 需求分析：5步流程
     ├── 02-design.md          # 功能设计：6步流程
     ├── 03-develop.md         # 代码开发：7步流程
     ├── 04-testing.md         # 测试流程：测试策略
     ├── 05-review.md          # 代码评审：6维度评审
-    ├── 06-refactor.md        # 代码重构：重构流程
     ├── 07-debug.md           # 问题诊断修复：4阶段一体化
     ├── 08-deployment.md      # 部署发布：部署流程
     ├── 09-optimization.md    # 系统优化维护：5维度体系
@@ -199,10 +216,10 @@ graph TD
     - 编码规范
     - 文档模板
     
-  quality-templates.md:       # 质量模板库 (无序号模板类)
+  quality-templates.md:       # 质量模板库
     depends: [02-common-standards.md]
     
-  00-project-init.md:         # 项目开启 (00号规则)
+  00-project-init.md:         # 项目开启
     depends: [quality-templates.md, 02-common-standards.md]
     
   01-requirements.md:         # 需求分析
@@ -219,11 +236,10 @@ graph TD
 
 ## 🚀 高级特性
 
-### 🎯 智能路由
-- **前缀优先**：明确前缀具有最高匹配优先级
-- **关键词匹配**：基于内容的智能关键词识别
-- **上下文推荐**：根据对话上下文智能推荐规则
-- **冲突处理**：自动检测和解决规则冲突
+### 🎯 智能匹配优先级
+- **精确匹配**：完整命令具有最高优先级
+- **三字母匹配**：支持简洁的三字母缩写
+- **错误提示**：无效命令时显示帮助信息
 
 ### 📊 质量保证
 - **统一基线**：所有规则共享相同的质量标准
@@ -242,10 +258,10 @@ graph TD
 ## 📚 最佳实践
 
 ### 👥 用户使用建议
-1. **明确前缀**：在消息开头使用明确的前缀关键词
-2. **提供上下文**：给出足够的背景信息帮助智能匹配
-3. **步骤确认**：对于步骤化流程，及时给出yes/no确认
-4. **质量关注**：关注每步的质量检查清单
+1. **使用>前缀**：所有命令都以 `>` 开头
+2. **优先完整命令**：重要操作使用完整命令确保准确性
+3. **三字母缩写**：日常操作可使用三字母缩写提高效率
+4. **及时确认**：对于步骤化流程，及时给出yes/no确认
 
 ### 🤖 Agent执行原则
 1. **严格遵循**：必须按照规则要求的格式和步骤执行
@@ -288,7 +304,7 @@ cd .cursor
 
 ### 短期目标
 - [ ] 完成所有规则文件的创建和测试
-- [ ] 验证智能路由的准确性和效率
+- [ ] 验证命令路由的准确性和效率
 - [ ] 收集用户反馈并优化使用体验
 
 ### 中期目标  

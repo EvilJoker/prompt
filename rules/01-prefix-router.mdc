@@ -1,153 +1,221 @@
 ---
-description: 智能提示词
-globs: 
-alwaysApply: false
+alwaysApply: true
 ---
-# 01 智能提示词分发路由器
-
 ## 进入条件
-当用户输入 前缀匹配 "router" 时，采用本提示词。并打印"本次使用提示词 01-prefix-router.mdc"
-其他场景一定不使用。
-## 退出条件
-当用户输入 前缀匹配 "ignore" 时，强制不采用本提示词。并打印"本次不使用提示词 01-prefix-router.mdc"
+请强制加载该提示词，当用户输入使用 > 开始时，请检查是否有命中路由表。如果命中，请使用对应的提示词。
 
-## 🎯 路由策略
-基于触发词、语义分析和上下文自动匹配最合适的规则文件，实现99%准确率的智能分发。
+# 🎯 智能提示词分发路由器
 
----
+## 🌐 系统概览
 
-## 📋 优化后的分发表
-
-### 🔄 核心规则 (重新排序)
-| 前缀/关键词 | 规则文件 | 执行模式 | 说明 |
-|----|----|----|---|
-| **`项目初始化` / `project init`** | **[00-project-init.md](mdc:rules/00-project-init.md)** | **3阶段式** | **🏆 项目开启：架构设计与初始化** |
-| `需求` / `requirements` | [01-requirements.md](mdc:rules/01-requirements.md) | 步骤化 | 需求分析与规范 |
-| `设计` / `design` | [02-design.md](mdc:rules/02-design.md) | 8步骤(双模式) | 功能设计流程 |
-| `开发` / `develop` | [03-develop.md](mdc:rules/03-develop.md) | 步骤化 | 编码开发规范 |
-| `测试` / `testing` | [04-testing.md](mdc:rules/04-testing.md) | 层次化 | 全面测试体系 |
-| `评审` / `review` | [05-review.md](mdc:rules/05-review.md) | 标准化 | 代码评审 |
-| `问题` / `debug` | [07-debug.md](mdc:rules/07-debug.md) | 自适应 | 问题诊断修复一体化 |
-| `部署` / `deploy` | [08-deployment.md](mdc:rules/08-deployment.md) | 阶段化 | 部署发布管理 |
-| `优化` / `performance` / `维护` | [09-optimization.md](mdc:rules/09-optimization.md) | 持续化 | 系统优化维护一体化 |
-| `架构同步` / `architecture` | [10-architecture-sync.md](mdc:rules/10-architecture-sync.md) | 步骤化 | 架构文档同步 |
-
-### 🛠️ 支撑规则
-| 前缀/关键词 | 规则文件 | 执行模式 | 说明 |
-|----|----|----|---|
-| `质量` / `检查` / `标准` | [quality-templates.md](mdc:rules/quality-templates.md) | 参考型 | 统一质量检查模板 |
-| `标准` / `规范` | [02-common-standards.md](mdc:rules/02-common-standards.md) | 参考型 | 通用开发标准 |
-
----
-
-## 🧠 智能关键词匹配
-
-### 中文关键词映射
-```yaml
-project_init_keywords: ["项目初始化", "项目搭建", "架构设计", "项目建设", "初始化", "项目创建", "项目开启"]  # 🏆 项目开启关键词
-requirements_keywords: ["需求", "需求分析", "业务需求", "功能需求", "用户故事"]
-design_keywords: ["设计", "架构设计", "系统设计", "详细设计", "接口设计", "数据库设计"]
-development_keywords: ["开发", "编码", "实现", "代码", "编程"]
-testing_keywords: ["测试", "单元测试", "集成测试", "系统测试", "自动化测试"]
-review_keywords: ["评审", "代码评审", "代码审查", "review", "CR"]
-problem_resolution_keywords: ["问题", "bug", "错误", "故障", "调试", "修复", "debug", "排查"]
-optimization_keywords: ["优化", "性能", "维护", "运维", "调优", "监控"]
-deployment_keywords: ["部署", "发布", "上线", "deploy", "release"]
-architecture_sync_keywords: ["架构同步", "架构更新", "文档同步"]
-quality_keywords: ["质量", "检查", "标准", "模板", "规范"]
+### 系统架构
+```
+提示词分发系统 v2.0
+├── 01-prefix-router.md         # 智能路由配置（本文件）
+├── 02-common-standards.md      # 公共标准规范
+└── rules/                      # 具体规则文件
+    ├── 00-project-init.md      # 项目开启：架构设计与初始化
+    ├── 01-requirements.md      # 需求分析
+    ├── 02-design.md           # 功能设计
+    ├── 03-develop.md          # 代码开发
+    ├── 04-testing.md          # 测试流程
+    ├── 05-review.md           # 代码评审
+    ├── 07-debug.md            # 问题诊断修复
+    ├── 08-deployment.md       # 部署发布
+    ├── 09-optimization.md     # 系统优化维护
+    ├── 10-architecture-sync.md # 架构同步
+    ├── quality-templates.md   # 质量检查模板
+    └── 11-opensource.md       # 开源项目完整性检查
 ```
 
-### 英文关键词映射
-```yaml
-project_init: ["project init", "project setup", "architecture init", "scaffold", "bootstrap", "initialize", "project start"]  # 🏆 项目开启关键词
-requirements: ["requirement", "business", "functional", "user story", "specification"]
-design: ["design", "architecture", "system design", "detailed design", "interface"]
-development: ["develop", "code", "implement", "programming", "coding"]
-testing: ["test", "unit test", "integration test", "automation", "qa"]
-review: ["review", "code review", "peer review", "inspection"]
-problem_resolution: ["bug", "issue", "problem", "debug", "troubleshoot", "fix", "resolve"]
-optimization: ["performance", "optimize", "maintain", "monitor", "tuning", "sre"]
-deployment: ["deploy", "release", "publish", "delivery", "rollout"]
-architecture_sync: ["architecture", "sync", "document", "alignment"]
-quality: ["quality", "check", "standard", "template", "guideline"]
+### 分发机制
+1. **Agent启动时读取**：01-prefix-router.md → 02-common-standards.md
+2. **根据>前缀匹配**：解析用户输入，匹配对应规则
+3. **动态加载规则**：加载主规则 + 依赖的公共标准
+4. **执行质量控制**：按统一标准执行质量检查
+
+---
+
+## 📋 命令路由表
+
+### 🎯 核心命令
+| 完整命令 | 三字母缩写 | 规则文件 | 执行模式 | 功能说明 |
+|----------|------------|----------|----------|----------|
+| **`>init`** | **`>ini`** | **[00-project-init.md](mdc:rules/00-project-init.md)** | **3阶段式** | **🏆 项目开启：架构设计与初始化** |
+| **`>req`** | **`>req`** | **[01-requirements.md](mdc:rules/01-requirements.md)** | **步骤化** | **需求分析与规范** |
+| **`>design`** | **`>des`** | **[02-design.md](mdc:rules/02-design.md)** | **8步骤(双模式)** | **功能设计流程** |
+| **`>dev`** | **`>dev`** | **[03-develop.md](mdc:rules/03-develop.md)** | **步骤化** | **编码开发规范** |
+| **`>test`** | **`>tes`** | **[04-testing.md](mdc:rules/04-testing.md)** | **层次化** | **全面测试体系** |
+| **`>review`** | **`>rev`** | **[05-review.md](mdc:rules/05-review.md)** | **标准化** | **代码评审** |
+| **`>debug`** | **`>deb`** | **[07-debug.md](mdc:rules/07-debug.md)** | **自适应** | **问题诊断修复一体化** |
+| **`>deploy`** | **`>dep`** | **[08-deployment.md](mdc:rules/08-deployment.md)** | **阶段化** | **部署发布管理** |
+| **`>optimize`** | **`>opt`** | **[09-optimization.md](mdc:rules/09-optimization.md)** | **持续化** | **系统优化维护一体化** |
+| **`>arch`** | **`>arc`** | **[10-architecture-sync.md](mdc:rules/10-architecture-sync.md)** | **步骤化** | **架构文档同步** |
+
+### 🛠️ 支撑命令
+| 完整命令 | 三字母缩写 | 规则文件 | 执行模式 | 功能说明 |
+|----------|------------|----------|----------|----------|
+| **`>quality`** | **`>qua`** | **[quality-templates.md](mdc:rules/quality-templates.md)** | **参考型** | **统一质量检查模板** |
+| **`>standard`** | **`>sta`** | **[02-common-standards.md](mdc:rules/02-common-standards.md)** | **参考型** | **通用开发标准** |
+| **`>help`** | **`>hel`** | **-** | **帮助型** | **显示所有命令帮助** |
+
+---
+
+## 🎮 使用示例
+
+### 基础使用
+```
+用户: >init 创建一个新的React项目
+系统: 📋 执行信息
+      - 应用规则：00-project-init.md (项目开启：架构设计与初始化)
+      - 加载依赖：02-common-standards.md
+      - 执行模式：3阶段式执行
+      
+      开始执行Stage 1：项目架构设计...
+```
+
+### 三字母缩写
+```
+用户: >des 设计用户登录功能
+系统: 📋 执行信息
+      - 应用规则：02-design.md (功能设计流程)
+      - 匹配命令：>des (design的缩写)
+      - 执行模式：8步骤(双模式)执行
+```
+
+### 帮助系统
+
+用户: >help
+当用户输入 >help 只打印以下文本
+```txt
+系统: 📋 可用命令列表
+      >init/ini  - 项目初始化
+      >req       - 需求分析
+      >design/des - 功能设计
+      >dev       - 代码开发
+      >test/tes  - 测试流程
+      >review/rev - 代码评审
+      >debug/deb - 问题诊断
+      >deploy/dep - 部署发布
+      >optimize/opt - 系统优化
+      >arch/arc  - 架构同步
+      >quality/qua - 质量检查
+      >standard/sta - 开发标准
+      >help/hel  - 帮助信息
 ```
 
 ---
 
-## 🔗 规则依赖关系
+## 📊 质量基线
 
-### 核心依赖图
+### 🎯 统一标准
+所有规则都遵循统一的质量基线：
+
+- **测试覆盖率**：≥ 90%（核心模块 ≥ 95%）
+- **代码复杂度**：≤ 10（建议 ≤ 7）
+- **API响应时间**：≤ 500ms（核心接口 ≤ 200ms）
+- **系统可用性**：≥ 99.9%
+- **安全标准**：生产级安全要求
+- **文档完整性**：100%关键功能有文档
+
+### 📋 输出规范
+每个规则的输出都包含：
+- **执行信息**：显示应用的规则和依赖
+- **步骤化执行**：清晰的执行步骤和检查点
+- **质量检查**：每步的质量验证清单
+- **标准模板**：统一的文档输出格式
+
+---
+
+## 🔄 研发流程图
+
 ```mermaid
 graph TD
-    A[00-project-init.md] --> B[项目开启]
-    A --> C[quality-templates.md]
-    A --> D[02-common-standards.md]
+    A[>init 项目初始化] --> B[>req 需求分析]
+    B --> C[>design 功能设计]
+    C --> D[>dev 代码开发]
+    D --> E[>test 测试流程]
+    E --> F[>review 代码评审]
+    F --> G{质量检查}
+    G -->|通过| H[>deploy 部署发布]
+    G -->|不通过| I[>debug 问题诊断修复]
+    I --> D
+    H --> J[>optimize 系统优化维护]
+    J --> K[>arch 架构同步]
     
-    C --> E[所有规则]
-    D --> E
+    L[>quality 质量检查] --> G
+    M[>standard 开发标准] --> D
     
-    F[01-requirements.md] --> G[02-design.md]
-    G --> H[03-develop.md]
-    H --> I[04-testing.md]
-    I --> J[05-review.md]
-    
-    K[07-debug.md] --> I
-    K --> J
-    
-    L[09-optimization.md] --> M[08-deployment.md]
-    N[10-architecture-sync.md] --> G
-    N --> H
-    
-    A --> F  # 项目初始化可以关联到需求分析
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#ffebee
+    style G fill:#e0f2f1
+    style H fill:#fff8e1
+    style I fill:#f1f8e9
+    style J fill:#e3f2fd
+    style K fill:#e8f5e8
+    style L fill:#fff3e0
+    style M fill:#f3e5f5
 ```
-
-### 📊 优化效果对比
-| 优化项目 | 优化前 | 优化后 | 改善效果 |
-|----------|--------|--------|----------|
-| 规则文件数量 | 11个 | 10个 | 精简优化 |
-| 序号逻辑性 | 中等 | 高 | ↑40% 提升 |
-| 项目流程清晰度 | 60% | 95% | ↑58% 提升 |
-| 使用便利性 | 中 | 高 | ↑50% 提升 |
-| 新手友好度 | 低 | 高 | ↑70% 提升 |
 
 ---
 
-## 🚀 智能化特性
+## 🚀 高级特性
 
-### 1. 项目生命周期感知路由
-- **项目开启**: 00号规则作为项目启动的首选引导
-- **开发流程**: 按照实际开发顺序进行智能路由
-- **问题解决**: 根据项目阶段推荐合适的问题解决策略
+### 1. 智能匹配优先级
+- **精确匹配**：完整命令具有最高优先级
+- **三字母匹配**：支持简洁的三字母缩写
+- **错误提示**：无效命令时显示帮助信息
 
-### 2. 自适应模式选择
-- **问题诊断**: 根据问题复杂度自动选择快速修复/深度分析模式
-- **系统优化**: 根据指标异常程度自动选择L1-L4优化策略
-- **设计模式**: 根据现有架构情况自动选择增量/全新设计模式
-
-### 3. 上下文感知路由
-- 分析对话历史，智能推荐相关规则
+### 2. 上下文感知
+- 分析对话历史，智能推荐相关命令
 - 基于项目特征，自动加载适配规则
-- 根据用户习惯，优化路由策略
+- 根据用户习惯，优化推荐策略
 
-### 4. 质量门禁集成
+### 3. 质量门禁集成
 - 自动加载质量检查模板
 - 强制质量标准验证
 - 质量数据统计分析
 
 ---
 
-## ✅ 路由质量保证
+## ✅ 系统质量保证
 
 ### 分发准确率要求
-- [ ] 关键词匹配准确率 ≥ 95%
-- [ ] 语义理解准确率 ≥ 90%  
-- [ ] 上下文感知准确率 ≥ 85%
-- [ ] 综合分发准确率 ≥ 99%
+- [ ] 命令匹配准确率 ≥ 99%
+- [ ] 规则加载准确率 ≥ 100%
 - [ ] 用户满意度 ≥ 4.5/5.0
 
 ### 系统性能要求
-- [ ] 路由响应时间 ≤ 100ms
-- [ ] 规则加载时间 ≤ 500ms
-- [ ] 依赖解析时间 ≤ 200ms
-- [ ] 内存使用率 ≤ 512MB
-- [ ] 系统可用性 ≥ 99.9% 
+- [ ] 路由响应时间 ≤ 50ms
+- [ ] 规则加载时间 ≤ 200ms
+- [ ] 内存使用率 ≤ 256MB
+- [ ] 系统可用性 ≥ 99.9%
+
+---
+
+## 📚 最佳实践
+
+### 👥 用户使用建议
+1. **使用>前缀**：所有命令都以 `>` 开头
+2. **优先完整命令**：重要操作使用完整命令确保准确性
+3. **三字母缩写**：日常操作可使用三字母缩写提高效率
+4. **及时确认**：对于步骤化流程，及时给出yes/no确认
+
+### 🤖 Agent执行原则
+1. **严格遵循**：必须按照规则要求的格式和步骤执行
+2. **依赖加载**：自动加载相关的依赖规则和标准
+3. **质量检查**：每步完成后进行质量自检
+4. **用户反馈**：及时响应用户的确认和修改要求
+
+---
+
+## 🎯 版本信息
+
+- **当前版本**：v2.0
+- **兼容性**：向下兼容策略
+- **更新机制**：增量更新，保持向后兼容
+- **愿景**：打造最智能、最高效、最易用的AI辅助开发提示词系统！ 
